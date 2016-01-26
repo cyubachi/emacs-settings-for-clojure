@@ -58,7 +58,7 @@
                     collect url)))
     ))
 
-;; clojure setting
+;; clojure settings
 (require 'clojure-mode)
 (require 'cider)
 (add-hook 'clojure-mode-hook 'cider-mode)
