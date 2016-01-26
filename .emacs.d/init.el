@@ -58,15 +58,11 @@
                     collect url)))
     ))
 
-;; package-install-from-urlsを使った処理はエラーになったので削っている
-
-
+;; clojure setting
 (require 'clojure-mode)
-
 (require 'cider)
 (add-hook 'clojure-mode-hook 'cider-mode)
 (add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
-
 (require 'ac-cider)
 (add-hook 'cider-mode-hook 'ac-flyspell-workaround)
 (add-hook 'cider-mode-hook 'ac-cider-setup)
