@@ -110,3 +110,6 @@
 
 ;; magit-config
 (global-set-key (kbd "C-x g") 'magit-status)
+
+;; anythin setting
+(require 'anything)
