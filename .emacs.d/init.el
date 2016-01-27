@@ -93,3 +93,7 @@
    (let ((face (intern (format "rainbow-delimiters-depth-%d-face" index))))
     (cl-callf color-saturate-name (face-foreground face) 30))))
 (add-hook 'emacs-startup-hook 'rainbow-delimiters-using-stronger-colors)
+
+;; reload buffer on F12 key
+(global-set-key
+ [f12] 'eval-buffer)
