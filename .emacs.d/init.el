@@ -97,3 +97,7 @@
 ;; reload buffer on F12 key
 (global-set-key
  [f12] 'eval-buffer)
+
+;; font setting
+(add-to-list 'default-frame-alist
+             '(font . "DejaVu Sans Mono-10"))
