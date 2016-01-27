@@ -101,3 +101,6 @@
 ;; font setting
 (add-to-list 'default-frame-alist
              '(font . "DejaVu Sans Mono-10"))
+
+;; screen maximize setting
+(set-frame-parameter nil 'fullscreen 'maximized)
