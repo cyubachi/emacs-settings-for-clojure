@@ -104,3 +104,6 @@
 
 ;; screen maximize setting
 (set-frame-parameter nil 'fullscreen 'maximized)
+
+;; hide toolbar setting
+(tool-bar-mode -1)
