@@ -113,3 +113,6 @@
 
 ;; anythin setting
 (require 'anything)
+(setq my-anything-keybind (kbd "C-]"))
+(global-set-key my-anything-keybind 'anything-for-files)
+(define-key anything-map my-anything-keybind 'abort-recursive-edit)
