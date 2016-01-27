@@ -65,6 +65,9 @@
 ;; load monokai theme
 (load-theme 'monokai t)
 
+;; auto-complete setting
+(ac-config-default)
+
 ;; clojure settings
 (require 'clojure-mode)
 (require 'cider)
