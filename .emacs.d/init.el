@@ -58,6 +58,9 @@
                     collect url)))
     ))
 
+;; display line number
+(global-linum-mode t)
+
 ;; clojure settings
 (require 'clojure-mode)
 (require 'cider)
