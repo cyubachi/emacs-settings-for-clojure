@@ -107,3 +107,6 @@
 
 ;; hide toolbar setting
 (tool-bar-mode -1)
+
+;; magit-config
+(global-set-key (kbd "C-x g") 'magit-status)
