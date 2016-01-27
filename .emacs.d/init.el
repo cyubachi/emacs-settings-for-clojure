@@ -6,6 +6,7 @@
     ac-cider
     rainbow-delimiters
     anything
+    monokai-theme
     ))
 
 (defvar my/favorite-package-urls
@@ -60,6 +61,9 @@
 
 ;; display line number
 (global-linum-mode t)
+
+;; load monokai theme
+(load-theme 'monokai t)
 
 ;; clojure settings
 (require 'clojure-mode)
