@@ -133,3 +133,26 @@
         (set-window-dedicated-p (selected-window) sticky-buffer-mode))
     (set-window-dedicated-p (selected-window) sticky-buffer-mode)
     (setq header-line-format sticky-buffer-previous-header-line-format)))
+
+;; dirtree setting
+(require 'dirtree)
+
+
+;; nodejs-repl setting
+(require 'nodejs-repl)
+
+;; japanese setting
+(prefer-coding-system 'utf-8)
+(setq coding-system-for-read 'utf-8)
+(setq coding-system-for-write 'utf-8)
+
+
+;; indent whole buffer
+(defun iwb ()
+  "indent whole buffer"
+  (interactive)
+  (delete-trailing-whitespace)
+  (indent-region (point-min) (point-max) nil)
+  (untabify (point-min) (point-max)))
+
+(global-set-key (kbd "C-c C-f") 'iwb)
