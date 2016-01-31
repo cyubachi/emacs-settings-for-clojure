@@ -78,10 +78,10 @@
 (add-hook 'cider-mode-hook 'ac-flyspell-workaround)
 (add-hook 'cider-mode-hook 'ac-cider-setup)
 (add-hook 'cider-repl-mode-hook 'ac-cider-setup)
-  (eval-after-load "auto-complete"
-    '(progn
-       (add-to-list 'ac-modes 'cider-mode)
-       (add-to-list 'ac-modes 'cider-repl-mode)))
+(eval-after-load "auto-complete"
+  '(progn
+     (add-to-list 'ac-modes 'cider-mode)
+     (add-to-list 'ac-modes 'cider-repl-mode)))
 
 ;; rainbow-delimiters
 (show-paren-mode t)
@@ -95,19 +95,13 @@
    for index from 1 to rainbow-delimiters-max-face-count
    do
    (let ((face (intern (format "rainbow-delimiters-depth-%d-face" index))))
-    (cl-callf color-saturate-name (face-foreground face) 30))))
+     (cl-callf color-saturate-name (face-foreground face) 30))))
 (add-hook 'emacs-startup-hook 'rainbow-delimiters-using-stronger-colors)
 
 ;; reload buffer on F12 key
 (global-set-key
  [f12] 'eval-buffer)
 
-;; font setting
-(add-to-list 'default-frame-alist
-             '(font . "DejaVu Sans Mono-10"))
-
-;; screen maximize setting
-(set-frame-parameter nil 'fullscreen 'maximized)
 
 ;; hide toolbar setting
 (tool-bar-mode -1)
@@ -118,6 +112,7 @@
 ;; anythin setting
 (require 'anything)
 (setq my-anything-keybind (kbd "C-]"))
+(global-set-key (kbd "M-]") 'anything-show-kill-ring)
 (global-set-key my-anything-keybind 'anything-for-files)
 (define-key anything-map my-anything-keybind 'abort-recursive-edit)
 
@@ -135,11 +130,11 @@
     (setq header-line-format sticky-buffer-previous-header-line-format)))
 
 ;; dirtree setting
-(require 'dirtree)
+;; (require 'dirtree)
 
 
 ;; nodejs-repl setting
-(require 'nodejs-repl)
+;; (require 'nodejs-repl)
 
 ;; japanese setting
 (prefer-coding-system 'utf-8)
@@ -154,5 +149,27 @@
   (delete-trailing-whitespace)
   (indent-region (point-min) (point-max) nil)
   (untabify (point-min) (point-max)))
+(global-set-key (kbd "C-c f") 'iwb)
 
-(global-set-key (kbd "C-c C-f") 'iwb)
+;; javascript indent setting
+(autoload 'js2-mode "js2-mode" nil t)
+(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+(setq js-indent-level 2)
+(setq js2-mode-hook
+      '(lambda ()
+         (setq js2-basic-offset 2)
+         (setq tab-width 2)))
+
+;; tab-character disable setting
+(setq-default indent-tabs-mode nil)
+
+;; jade mode setting
+(require 'jade-mode)
+
+;; gulpjs setting this setting need git clone.
+(when (file-exists-p "~/.emacs.d/emacs-gulpjs")
+  (add-to-list 'load-path "~/.emacs.d/emacs-gulpjs")
+  (require 'gulpjs))
+
+;; screen maximize setting
+(set-frame-parameter nil 'fullscreen 'maximized)
