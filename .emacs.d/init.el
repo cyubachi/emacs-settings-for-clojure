@@ -8,6 +8,8 @@
     anything
     monokai-theme
     exec-path-from-shell
+    tabbar
+    neotree
     ))
 
 (defvar my/favorite-package-urls
@@ -173,3 +175,28 @@
 
 ;; screen maximize setting
 (set-frame-parameter nil 'fullscreen 'maximized)
+
+(require 'tabbar)
+(tabbar-mode)
+
+;; 色設定
+(set-face-attribute ; バー自体の色
+  'tabbar-default nil
+   :background "white"
+   :family "Inconsolata"
+   :height 1.0)
+(set-face-attribute ; アクティブなタブ
+  'tabbar-selected nil
+   :background "black"
+   :foreground "white"
+   :weight 'bold
+   :box nil)
+(set-face-attribute ; 非アクティブなタブ
+  'tabbar-unselected nil
+   :background "white"
+   :foreground "black"
+   :box nil)
+
+(require 'neotree)
+(neotree)
+(global-set-key [f8] 'neotree-toggle)
