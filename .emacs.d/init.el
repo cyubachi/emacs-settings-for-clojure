@@ -10,6 +10,7 @@
     exec-path-from-shell
     tabbar
     neotree
+    workgroups
     ))
 
 (defvar my/favorite-package-urls
@@ -200,3 +201,9 @@
 (require 'neotree)
 (neotree)
 (global-set-key [f8] 'neotree-toggle)
+
+(require 'workgroups)
+(setq wg-prefix-key (kbd "C-c w"))
+;(workgroups-mode 1)
+(wg-load "~/.emacs.d/workgroups/wg01")
+
