@@ -85,6 +85,8 @@
   '(progn
      (add-to-list 'ac-modes 'cider-mode)
      (add-to-list 'ac-modes 'cider-repl-mode)))
+; nprepl-message*というバッファを作らない
+(setq nrepl-log-messages nil)
 
 ;; rainbow-delimiters
 (show-paren-mode t)
@@ -177,33 +179,56 @@
 ;; screen maximize setting
 (set-frame-parameter nil 'fullscreen 'maximized)
 
-(require 'tabbar)
-(tabbar-mode)
-
-;; 色設定
-(set-face-attribute ; バー自体の色
-  'tabbar-default nil
-   :background "white"
-   :family "Inconsolata"
-   :height 1.0)
-(set-face-attribute ; アクティブなタブ
-  'tabbar-selected nil
-   :background "black"
-   :foreground "white"
-   :weight 'bold
-   :box nil)
-(set-face-attribute ; 非アクティブなタブ
-  'tabbar-unselected nil
-   :background "white"
-   :foreground "black"
-   :box nil)
-
+(setq neo-show-hidden-files t)
+(setq neo-smart-open t)
 (require 'neotree)
 (neotree)
 (global-set-key [f8] 'neotree-toggle)
 
-(require 'workgroups)
+(add-to-list 'load-path "~/workgroups/workgroups.el")
 (setq wg-prefix-key (kbd "C-c w"))
-;(workgroups-mode 1)
-(wg-load "~/.emacs.d/workgroups/wg01")
+(require 'workgroups)
+(wg-load "~/workgroups/wg01")
+(add-hook 'auto-save-hook
+          (lambda ()
+            (wg-update-all-workgroups)
+            (wg-save "~/workgroups/wg01")))
+(add-hook 'kill-emacs-hook
+          (lambda ()
+            (wg-update-all-workgroups)
+            (wg-save "~/workgroups/wg01")))
+
+
+;; ベースは Shift-JIS のまま
+(set-language-environment "Japanese")
+(set-default 'buffer-file-coding-system 'utf-8)
+
+(workgroups-mode 1)
+(require 'switch-window)
+(select-window (third (switch-window-list)))
+
+
+(defun display-main-window (buffer alist)
+  (window--display-buffer buffer (second (switch-window-list)) 'reuse))
+(defun display-third-window (buffer alist)
+  (select-window (nth 2 (switch-window-list)))
+  (window--display-buffer buffer (nth 2 (switch-window-list)) 'reuse))
+(defun display-forth-window (buffer alist)
+  (select-window (nth 3 (switch-window-list)))
+  (window--display-buffer buffer (nth 3 (switch-window-list)) 'reuse))
+                                        ;  (setq main-win (second (switch-window-list)))
+                                        ;  window--display-buffer buffer main-win)
+                                        ;(add-list 'display-buffe-alisrt
+
+                                        ;(require 'popwin)
+                                        ;(setq display-buffer-function 'popwin:display-buffer)
+                                        ;(setq popwin:popup-window-position 'right)
+(setq inhibit-startup-screen t)
+(setq display-buffer-alist
+      '(("*anything.*?*" . (display-forth-window . nil))
+        ("*gulp.*?*" . (display-forth-window . nil))
+        ("*cider.*?*" . (display-forth-window . nil))
+        ("*eshell.*?*" . (display-third-window . nil))))
+
+(eshell)
 
