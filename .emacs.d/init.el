@@ -10,6 +10,7 @@
     exec-path-from-shell
     tabbar
     neotree
+    switch-window
     workgroups
     ))
 
@@ -134,12 +135,6 @@
     (set-window-dedicated-p (selected-window) sticky-buffer-mode)
     (setq header-line-format sticky-buffer-previous-header-line-format)))
 
-;; dirtree setting
-;; (require 'dirtree)
-
-
-;; nodejs-repl setting
-;; (require 'nodejs-repl)
 
 ;; japanese setting
 (prefer-coding-system 'utf-8)
@@ -168,14 +163,6 @@
 ;; tab-character disable setting
 (setq-default indent-tabs-mode nil)
 
-;; jade mode setting
-(require 'jade-mode)
-
-;; gulpjs setting this setting need git clone.
-(when (file-exists-p "~/.emacs.d/emacs-gulpjs")
-  (add-to-list 'load-path "~/.emacs.d/emacs-gulpjs")
-  (require 'gulpjs))
-
 ;; screen maximize setting
 (set-frame-parameter nil 'fullscreen 'maximized)
 
@@ -200,35 +187,48 @@
 
 
 ;; ベースは Shift-JIS のまま
+(add-hook 'set-language-environment-hook 
+          (lambda ()
+            (when (equal "ja_JP.UTF-8" (getenv "LANG"))
+             (setq default-process-coding-system '(utf-8 . utf-8))
+             (setq default-file-name-coding-system 'utf-8))
+            (when (equal "Japanese" current-language-environment)
+             (setq default-buffer-file-coding-system 'iso-2022-jp))))
+
 (set-language-environment "Japanese")
 (set-default 'buffer-file-coding-system 'utf-8)
 
 (workgroups-mode 1)
 (require 'switch-window)
-(select-window (third (switch-window-list)))
+(select-window (third (switch-window--list)))
 
 
 (defun display-main-window (buffer alist)
-  (window--display-buffer buffer (second (switch-window-list)) 'reuse))
+  (window--display-buffer buffer (second (switch-window--list)) 'reuse))
 (defun display-third-window (buffer alist)
-  (select-window (nth 2 (switch-window-list)))
-  (window--display-buffer buffer (nth 2 (switch-window-list)) 'reuse))
+  (select-window (nth 2 (switch-window--list)))
+  (window--display-buffer buffer (nth 2 (switch-window--list)) 'reuse))
 (defun display-forth-window (buffer alist)
-  (select-window (nth 3 (switch-window-list)))
-  (window--display-buffer buffer (nth 3 (switch-window-list)) 'reuse))
-                                        ;  (setq main-win (second (switch-window-list)))
-                                        ;  window--display-buffer buffer main-win)
-                                        ;(add-list 'display-buffe-alisrt
+  (select-window (nth 3 (switch-window--list)))
+  (window--display-buffer buffer (nth 3 (switch-window--list)) 'reuse))
 
-                                        ;(require 'popwin)
-                                        ;(setq display-buffer-function 'popwin:display-buffer)
-                                        ;(setq popwin:popup-window-position 'right)
 (setq inhibit-startup-screen t)
 (setq display-buffer-alist
       '(("*anything.*?*" . (display-forth-window . nil))
-        ("*gulp.*?*" . (display-forth-window . nil))
         ("*cider.*?*" . (display-forth-window . nil))
         ("*eshell.*?*" . (display-third-window . nil))))
 
 (eshell)
 
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(cider-lein-parameters "with-profile +prod repl :headless"))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
