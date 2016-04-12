@@ -86,7 +86,8 @@
   '(progn
      (add-to-list 'ac-modes 'cider-mode)
      (add-to-list 'ac-modes 'cider-repl-mode)))
-; nprepl-message*というバッファを作らない
+
+;; nprepl-message*というバッファを作らない
 (setq nrepl-log-messages nil)
 
 ;; rainbow-delimiters
@@ -135,12 +136,10 @@
     (set-window-dedicated-p (selected-window) sticky-buffer-mode)
     (setq header-line-format sticky-buffer-previous-header-line-format)))
 
-
 ;; japanese setting
 (prefer-coding-system 'utf-8)
 (setq coding-system-for-read 'utf-8)
 (setq coding-system-for-write 'utf-8)
-
 
 ;; indent whole buffer
 (defun iwb ()
@@ -150,15 +149,6 @@
   (indent-region (point-min) (point-max) nil)
   (untabify (point-min) (point-max)))
 (global-set-key (kbd "C-c f") 'iwb)
-
-;; javascript indent setting
-(autoload 'js2-mode "js2-mode" nil t)
-(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
-(setq js-indent-level 2)
-(setq js2-mode-hook
-      '(lambda ()
-         (setq js2-basic-offset 2)
-         (setq tab-width 2)))
 
 ;; tab-character disable setting
 (setq-default indent-tabs-mode nil)
@@ -185,15 +175,13 @@
             (wg-update-all-workgroups)
             (wg-save "~/workgroups/wg01")))
 
-
-;; ベースは Shift-JIS のまま
-(add-hook 'set-language-environment-hook 
+(add-hook 'set-language-environment-hook
           (lambda ()
             (when (equal "ja_JP.UTF-8" (getenv "LANG"))
-             (setq default-process-coding-system '(utf-8 . utf-8))
-             (setq default-file-name-coding-system 'utf-8))
+              (setq default-process-coding-system '(utf-8 . utf-8))
+              (setq default-file-name-coding-system 'utf-8))
             (when (equal "Japanese" current-language-environment)
-             (setq default-buffer-file-coding-system 'iso-2022-jp))))
+              (setq default-buffer-file-coding-system 'iso-2022-jp))))
 
 (set-language-environment "Japanese")
 (set-default 'buffer-file-coding-system 'utf-8)
@@ -201,7 +189,6 @@
 (workgroups-mode 1)
 (require 'switch-window)
 (select-window (third (switch-window--list)))
-
 
 (defun display-main-window (buffer alist)
   (window--display-buffer buffer (second (switch-window--list)) 'reuse))
