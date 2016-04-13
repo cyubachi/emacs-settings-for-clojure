@@ -1,7 +1,6 @@
 (defvar my/favorite-packages
   '(
     init-loader
-    shell-history
     magit
     clojure-mode
     cider
