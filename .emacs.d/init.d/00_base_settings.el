@@ -11,6 +11,9 @@
 (global-set-key
  [f12] 'eval-buffer)
 
+;; comment or uncomment region
+(global-set-key (kbd "C-c ;") 'comment-or-uncomment-region)
+
 ;; hide toolbar setting
 (tool-bar-mode -1)
 

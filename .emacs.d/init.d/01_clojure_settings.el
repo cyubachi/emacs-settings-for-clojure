@@ -2,7 +2,6 @@
 (require 'clojure-mode)
 (require 'cider)
 (add-hook 'clojure-mode-hook 'cider-mode)
-;; (add-hook 'cider-mode-hook 'Cider-turn-on-eldoc-mode)
 (require 'ac-cider)
 (add-hook 'cider-mode-hook 'ac-flyspell-workaround)
 (add-hook 'cider-mode-hook 'ac-cider-setup)
