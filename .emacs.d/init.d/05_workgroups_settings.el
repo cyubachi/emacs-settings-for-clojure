@@ -29,6 +29,9 @@
 (setq display-buffer-alist
       '(("*anything.*?*" . (display-forth-window . nil))
         ("*cider.*?*" . (display-forth-window . nil))
+        ("*Async Shell Command.*?*" . (display-third-window . nil))
+        ("*magit: .*?*" . (display-main-window . nil))
+        ("*magit-process: .*?*" . (display-third-window . nil))
         ("*eshell.*?*" . (display-third-window . nil))))
 
 (eshell)
