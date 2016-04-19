@@ -47,3 +47,9 @@
 
 (set-language-environment "Japanese")
 (set-default 'buffer-file-coding-system 'utf-8)
+
+(require 'f)
+
+(defun list-defined-functions-in-file (file)
+  (-map 'cadr (s-match-strings-all "defun \\(exec-.*?\\) "
+                                   (f-read file))))

@@ -20,3 +20,9 @@
 
 (require 'anything-startup)
 (anything-complete-shell-history-setup-key (kbd "C-o"))
+
+(setq run-congiguration-candidates (list-defined-functions-in-file "~/.emacs.d/init.d/99_run_configuration.el"))
+(defvar anything-c-source-print-test
+  '((name . "Run configuration")
+    (candidates . (lambda () run-congiguration-candidates))
+    (type . command)))
