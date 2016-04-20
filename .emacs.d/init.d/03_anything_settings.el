@@ -43,3 +43,10 @@
 
 (require 'anything-startup)
 (anything-complete-shell-history-setup-key (kbd "C-o"))
+
+(defun filter-project-dir (dir-name)
+  (interactive)
+  (message (eq "" dir-name))
+  (eq "" dir-name))
+
+;; (remove-if 'filter-project-dir (split-string (shell-command-to-string "ls -F ~/clojure-projects | grep /") "\n"))
