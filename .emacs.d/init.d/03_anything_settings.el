@@ -1,8 +1,31 @@
 ;; anythin setting
 (require 'anything)
+(require 'anything-config)
+
+(require 'f)
+
+(defun list-defined-functions-in-file (file)
+  (-map 'cadr (s-match-strings-all "defun \\(exec-.*?\\) "
+                                   (f-read file))))
+
+(setq run-congiguration-candidates (list-defined-functions-in-file "~/.emacs.d/init.d/99_run_configuration.el"))
+(defvar anything-c-source-run-configuration
+  '((name . "Run configuration")
+    (candidates . (lambda () run-congiguration-candidates))
+    (type . command)))
+
+(defun my-anything ()
+  (interactive)
+  (anything-other-buffer
+   '(anything-c-source-buffers-list
+     anything-c-source-run-configuration
+     anything-c-source-recentf
+     anything-c-source-files-in-current-dir+)
+   "*anything*"))
+
 (setq my-anything-keybind (kbd "C-]"))
 (global-set-key (kbd "M-]") 'anything-show-kill-ring)
-(global-set-key my-anything-keybind 'anything-for-files)
+(global-set-key my-anything-keybind 'my-anything)
 (define-key anything-map my-anything-keybind 'abort-recursive-edit)
 
 ;; sticky buffer mode setting
@@ -20,9 +43,3 @@
 
 (require 'anything-startup)
 (anything-complete-shell-history-setup-key (kbd "C-o"))
-
-(setq run-congiguration-candidates (list-defined-functions-in-file "~/.emacs.d/init.d/99_run_configuration.el"))
-(defvar anything-c-source-print-test
-  '((name . "Run configuration")
-    (candidates . (lambda () run-congiguration-candidates))
-    (type . command)))

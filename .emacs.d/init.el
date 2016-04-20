@@ -13,6 +13,7 @@
     neotree
     switch-window
     workgroups
+    f
     ))
 
 (defvar my/favorite-package-urls
