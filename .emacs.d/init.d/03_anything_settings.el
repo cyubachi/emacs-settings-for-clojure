@@ -1,8 +1,27 @@
 ;; anythin setting
 (require 'anything)
 (require 'anything-config)
-
 (require 'f)
+
+;; for switch project sources
+(defvar emacs-project-dir "~/EmacsProjects")
+
+(setq switch-project-candidates
+      (if (file-exists-p emacs-project-dir)
+          (loop for x in (split-string (shell-command-to-string (format "cd %s && ls -1F | egrep [/@] | sed 's|[/@]||g'" emacs-project-dir)) "\n")
+                unless (s-blank? x)
+                collect x)
+        ()))
+
+(defun switch-project (project-dir-name)
+  (setq ffip-project-root (format "%s/%s" emacs-project-dir project-dir-name))
+  (neotree-dir ffip-project-root))
+
+(defvar anything-c-source-switch-project
+  '((name . "Switch Project")
+    (candidates . (lambda () switch-project-candidates))
+    (action . switch-project)))
+
 
 (defun list-defined-functions-in-file (file)
   (-map 'cadr (s-match-strings-all "defun \\(exec-.*?\\) "
@@ -19,6 +38,7 @@
   (anything-other-buffer
    '(anything-c-source-buffers-list
      anything-c-source-run-configuration
+     anything-c-source-switch-project
      anything-c-source-recentf
      anything-c-source-files-in-current-dir+)
    "*anything*"))
@@ -43,10 +63,5 @@
 
 (require 'anything-startup)
 (anything-complete-shell-history-setup-key (kbd "C-o"))
-
-(defun filter-project-dir (dir-name)
-  (interactive)
-  (message (eq "" dir-name))
-  (eq "" dir-name))
 
 ;; (remove-if 'filter-project-dir (split-string (shell-command-to-string "ls -F ~/clojure-projects | grep /") "\n"))

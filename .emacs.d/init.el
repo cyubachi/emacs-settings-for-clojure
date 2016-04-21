@@ -14,6 +14,8 @@
     switch-window
     workgroups
     f
+    find-file-in-project
+    window-purpose
     ))
 
 (defvar my/favorite-package-urls
