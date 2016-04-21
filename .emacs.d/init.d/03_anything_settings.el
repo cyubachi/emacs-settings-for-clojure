@@ -17,6 +17,8 @@
   (setq ffip-project-root (format "%s/%s" emacs-project-dir project-dir-name))
   (neotree-dir ffip-project-root))
 
+(global-set-key (kbd "C-c r") 'find-file-in-project)
+
 (defvar anything-c-source-switch-project
   '((name . "Switch Project")
     (candidates . (lambda () switch-project-candidates))
