@@ -8,8 +8,8 @@
 
 (setq switch-project-candidates
       (if (file-exists-p emacs-project-dir)
-          (loop for x in (split-string (shell-command-to-string (format "cd %s && ls -1F | egrep [/@] | sed 's|[/@]||g'" emacs-project-dir)) "\n")
-                unless (s-blank? x)
+          (loop for x in (directory-files emacs-project-dir nil "^\\([^.]\\|\\.[^.]\\|\\.\\..\\)")
+                when (file-directory-p (concat emacs-project-dir "/" x))
                 collect x)
         ()))
 
