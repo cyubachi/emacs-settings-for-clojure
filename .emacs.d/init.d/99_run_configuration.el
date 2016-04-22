@@ -1,7 +1,7 @@
 (defun exec-lein-ring-server ()
   (interactive)
-  (async-shell-command "cd ~/clojre_projects/slack_command_hook; lein ring server"))
+  (async-shell-command (format "cd %s; lein ring server" ffip-project-root)))
 
 (defun exec-lein-deps ()
   (interactive)
-  (async-shell-command "cd ~/clojre_projects/slack_command_hook; lein deps"))
+  (async-shell-command (format "cd %s; lein deps" ffip-project-root))
