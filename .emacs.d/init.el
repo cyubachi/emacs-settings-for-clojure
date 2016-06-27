@@ -16,6 +16,8 @@
     f
     find-file-in-project
     window-purpose
+    flycheck-clojure
+    flycheck-pos-tip
     ))
 
 (defvar my/favorite-package-urls

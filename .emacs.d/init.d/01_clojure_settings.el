@@ -1,8 +1,9 @@
-;; clojure settings
 (require 'clojure-mode)
 (require 'cider)
-(add-hook 'clojure-mode-hook 'cider-mode)
 (require 'ac-cider)
+
+;;; Code:
+(add-hook 'clojure-mode-hook 'cider-mode)
 (add-hook 'cider-mode-hook 'ac-flyspell-workaround)
 (add-hook 'cider-mode-hook 'ac-cider-setup)
 (add-hook 'cider-repl-mode-hook 'ac-cider-setup)
@@ -20,6 +21,9 @@
 (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
 (require 'cl-lib)
 (require 'color)
+(require 'flycheck)
+(require 'flycheck-pos-tip)
+
 (defun rainbow-delimiters-using-stronger-colors ()
   (interactive)
   (cl-loop
@@ -28,3 +32,14 @@
    (let ((face (intern (format "rainbow-delimiters-depth-%d-face" index))))
      (cl-callf color-saturate-name (face-foreground face) 30))))
 (add-hook 'emacs-startup-hook 'rainbow-delimiters-using-stronger-colors)
+
+
+;; for flycheck-clojure
+(eval-after-load 'flycheck '(flycheck-clojure-setup))
+(add-hook 'after-init-hook #'global-flycheck-mode)
+
+(eval-after-load 'flycheck
+  '(setq flycheck-display-errors-function #'flycheck-pos-tip-error-messages))
+
+(provide '01_clojure_settings)
+;;; 01_clojure_settings.el ends here
