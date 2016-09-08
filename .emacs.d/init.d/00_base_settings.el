@@ -47,3 +47,4 @@
 
 (set-language-environment "Japanese")
 (set-default 'buffer-file-coding-system 'utf-8)
+

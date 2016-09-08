@@ -1,0 +1,7 @@
+*~
+.emacs.d/elpa
+.emacs.d/eshell
+.emacs.d/recentf
+.emacs.d/session.*
+.emacs.d/auto-save-list
+.emacs.d/ac-comphist.dat

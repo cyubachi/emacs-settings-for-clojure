@@ -12,6 +12,13 @@
      (add-to-list 'ac-modes 'cider-mode)
      (add-to-list 'ac-modes 'cider-repl-mode)))
 
+;; figwheel_server_logを表示する際に制御文字を表示しない
+(autoload 'ansi-color-for-comint-mode-on "ansi-color" nil t)
+;; (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
+
+(add-hook 'fundamental-mode-hook 
+          'ansi-color-for-comint-mode-on)
+
 ;; nprepl-message*というバッファを作らない
 (setq nrepl-log-messages nil)
 
@@ -40,6 +47,12 @@
 
 (eval-after-load 'flycheck
   '(setq flycheck-display-errors-function #'flycheck-pos-tip-error-messages))
+
+;; for cljs repl
+(setq cider-cljs-lein-repl
+      "(do (require 'figwheel-sidecar.repl-api)
+           (figwheel-sidecar.repl-api/start-figwheel!)
+           (figwheel-sidecar.repl-api/cljs-repl))")
 
 (provide '01_clojure_settings)
 ;;; 01_clojure_settings.el ends here
