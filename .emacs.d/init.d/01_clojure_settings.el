@@ -49,6 +49,10 @@
   '(setq flycheck-display-errors-function #'flycheck-pos-tip-error-messages))
 
 ;; for cljs repl
+(custom-set-variables
+  '(cider-lein-parameters "repl :headless")) ;; this is default cider-lein-parameters
+(custom-set-faces)
+
 (setq cider-cljs-lein-repl
       "(do (require 'figwheel-sidecar.repl-api)
            (figwheel-sidecar.repl-api/start-figwheel!)
