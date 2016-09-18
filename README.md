@@ -23,7 +23,6 @@ This setting files use plugins as follows.
 * tabbar
 * neotree
 * switch-window
-* workgroups
 * f
 * find-file-in-project
 * window-purpose

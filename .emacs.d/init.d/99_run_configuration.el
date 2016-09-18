@@ -27,8 +27,8 @@
 (add-to-list 'auto-mode-alist '("\\.log$" . auto-revert-tail-mode))
 
 ;; the cursor moves to end of file.
-(defun do-end-of-buffer()
-  (when auto-revert-tail-mode
-    (end-of-buffer)))
-(add-hook 'after-revert-hook 'do-end-of-buffer)
-(add-hook 'find-file-hook 'do-end-of-buffer)
+;(defun do-end-of-buffer()
+;  (when auto-revert-tail-mode
+;    (end-of-buffer)))
+;(add-hook 'after-revert-hook 'do-end-of-buffer)
+;(add-hook 'find-file-hook 'do-end-of-buffer)
