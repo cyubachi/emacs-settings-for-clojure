@@ -5,3 +5,5 @@
 .emacs.d/session.*
 .emacs.d/auto-save-list
 .emacs.d/ac-comphist.dat
+.emacs.d/emacs-gulpjs/
+.emacs.d/server/
