@@ -1,9 +1,11 @@
 (add-to-list 'load-path "~/workgroups/workgroups.el")
 (setq wg-prefix-key (kbd "C-c w"))
 
+(defvar window-layout-save-dir "~/.emacs.d/window-purpose")
+
 (require 'window-purpose)
 (purpose-mode)
-(setq purpose-layout-dirs '("~/window-purpose"))
+(setq purpose-layout-dirs '(window-layout-save-dir))
 (add-to-list 'purpose-user-regexp-purposes '("^\\*scratch\\*$" . sub-2))
 (add-to-list 'purpose-user-regexp-purposes '("*magit: .*?*" . main))
 (add-to-list 'purpose-user-regexp-purposes '("\\.*.md$" . main))
@@ -31,16 +33,16 @@
 
 ;(require 'workgroups)
 ;(workgroups-mode 1)
-(purpose-load-window-layout "wg01" '("~/purpose-window"))
+(purpose-load-window-layout "wg01" purpose-layout-dirs)
 (neotree-show)
 (add-hook 'auto-save-hook
           (lambda ()
-            (purpose-save-window-layout "wg01" "~/purpose-window")))
+            (purpose-save-window-layout "wg01" window-layout-save-dir)))
 
 (add-hook 'kill-emacs-hook
           (lambda ()
             (neotree-hide)
-            (purpose-save-window-layout "wg01" "~/purpose-window")))
+            (purpose-save-window-layout "wg01" window-layout-save-dir)))
 
 ;(require 'switch-window)
 ; (select-window (third (switch-window--list)))
