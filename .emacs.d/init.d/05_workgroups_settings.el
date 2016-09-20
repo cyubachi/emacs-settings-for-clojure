@@ -29,19 +29,25 @@
 (add-to-list 'purpose-user-regexp-purposes '("^figwheel_server.log$" . sub-2))
 (purpose-compile-user-configuration)
 
-(eshell)
-
-;(require 'workgroups)
-;(workgroups-mode 1)
-(purpose-load-window-layout "wg01" '("~/.emacs.d/window-purpose"))
-(neotree)
 (add-hook 'auto-save-hook
           (lambda ()
             (purpose-save-window-layout "wg01" "~/.emacs.d/window-purpose")))
 
 (add-hook 'kill-emacs-hook
           (lambda ()
+            (neotree-hide)
             (purpose-save-window-layout "wg01" "~/.emacs.d/window-purpose")))
+
+(eshell)
+
+;;(require 'workgroups)
+;;(workgroups-mode 1)
+(if (file-exists-p "~/.emacs.d/window-purpose/wg01.window-layout")
+    (progn
+      (purpose-load-window-layout "wg01" '("~/.emacs.d/window-purpose"))
+      (neotree-show))
+  (neotree))
+
 
 ;(require 'switch-window)
 ; (select-window (third (switch-window--list)))
