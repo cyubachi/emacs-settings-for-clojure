@@ -13,6 +13,9 @@
                 collect x)
         ()))
 
+(if (eq system-type 'windows-nt)
+    (setq ffip-find-executable "c:\\\\cygwin64\\\\bin\\\\find"))
+
 (defun switch-project (project-dir-name)
   (setq ffip-project-root (format "%s/%s" emacs-project-dir project-dir-name))
   (neotree-dir ffip-project-root))
