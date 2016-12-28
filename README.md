@@ -33,7 +33,10 @@ This setting files use plugins as follows.
 
 ## Requirement
 
-Maybe Emacs version 24.5.1 higher (test only version 24.5.1 on Ubuntu)
+* Maybe Emacs version 24.5.1 higher (test only version 24.5.1 on Ubuntu).
+* Git
+* Leiningen
+* Cygwin (only windows must be installed in `C:\cygwin64`)
 
 ## Usage
 
@@ -44,16 +47,16 @@ Please refer each of the document, how to use of installed plugins.
 * `C-]` toggle anything buffer
 * `M-]` show kill ring buffer
 * `C-c f` indent file
-* `C-c r` search file
+* `C-c r` search file in project
 * `C-c ;` comment or uncomment region
 * `C-x g` exec magit-status
 * `f8` exec toggle-neotree
 * `f12` exec eval-buffer
 
-#### window state
+#### window layout
 
-If workgroups mode is enabled, emacs window state is automatically saved in `~/workgroups`.
-When you boot emacs in the next time, the window state is automatically restored to the state that was saved last time.
+This setting files automatically store window layout in `~/.emacs.d/window-purpose`
+When you boot emacs in the next time, the window layout is automatically restored to the state that was saved last time.
 
 #### leiningen profile
 
@@ -71,11 +74,23 @@ and write setting like as follow.
 
 ## Install
 
+Linux and Mac
+
 ```
 cd /path/to/setting-files
 git clone https://github.com/cyubachi/emacs-settings-for-clojure.git
 ln -s /path/to/setting-files/.emacs.d ~/.emacs.d
 ```
+
+Windows
+
+```
+cd /path/to/setting-files
+git clone https://github.com/cyubachi/emacs-settings-for-clojure.git
+' execute by superuser
+mklink /D .emacs.d C:\path\to\setting-files\emacs-settings-for-clojure\.emacs.d
+```
+
 
 ## Contribution
 

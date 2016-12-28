@@ -1,9 +1,11 @@
 (add-to-list 'load-path "~/workgroups/workgroups.el")
 (setq wg-prefix-key (kbd "C-c w"))
 
+(defvar window-layout-save-dir "~/.emacs.d/window-purpose")
+
 (require 'window-purpose)
 (purpose-mode)
-(setq purpose-layout-dirs '("~/window-purpose"))
+(setq purpose-layout-dirs '("~/.emacs.d/window-purpose"))
 (add-to-list 'purpose-user-regexp-purposes '("^\\*scratch\\*$" . sub-2))
 (add-to-list 'purpose-user-regexp-purposes '("*magit: .*?*" . main))
 (add-to-list 'purpose-user-regexp-purposes '("\\.*.md$" . main))
@@ -27,20 +29,25 @@
 (add-to-list 'purpose-user-regexp-purposes '("^figwheel_server.log$" . sub-1))
 (purpose-compile-user-configuration)
 
-(eshell)
-
-;(require 'workgroups)
-;(workgroups-mode 1)
-(purpose-load-window-layout "wg01" '("~/window-purpose"))
-(neotree-show)
 (add-hook 'auto-save-hook
-          (lambda ()
-            (purpose-save-window-layout "wg01" "~/window-purpose")))
+	  (lambda ()
+            (purpose-save-window-layout "wg01" "~/.emacs.d/window-purpose")))
 
 (add-hook 'kill-emacs-hook
-          (lambda ()
-            (neotree-hide)
-            (purpose-save-window-layout "wg01" "~/window-purpose")))
+            (lambda ()
+              (neotree-hide)
+              (purpose-save-window-layout "wg01" "~/.emacs.d/window-purpose")))
+
+(eshell)
+
+;;(require 'workgroups)
+;;(workgroups-mode 1)
+(if (file-exists-p "~/.emacs.d/window-purpose/wg01.window-layout")
+    (progn
+      (purpose-load-window-layout "wg01" '("~/.emacs.d/window-purpose"))
+            (neotree-show))
+  (neotree))
+
 
 ;(require 'switch-window)
 ; (select-window (third (switch-window--list)))
