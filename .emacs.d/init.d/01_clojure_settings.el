@@ -18,14 +18,14 @@
 ;;     (add-to-list 'ac-modes 'cider-mode)
 ;;     (add-to-list 'ac-modes 'cider-repl-mode)))
 
-;; figwheel_server_logを表示する際に制御文字を表示しない
+;; don't display control character on figwheel_server.log
 (autoload 'ansi-color-for-comint-mode-on "ansi-color" nil t)
 ;; (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
 
 (add-hook 'fundamental-mode-hook 
           'ansi-color-for-comint-mode-on)
 
-;; nprepl-message*というバッファを作らない
+;; dont make "nprepl-message*" buffer
 (setq nrepl-log-messages nil)
 
 ;; rainbow-delimiters
