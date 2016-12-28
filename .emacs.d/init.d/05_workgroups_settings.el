@@ -24,23 +24,23 @@
 (add-to-list 'purpose-user-regexp-purposes '("^\\*Async Shell Command.*$" . sub-1))
 (add-to-list 'purpose-user-regexp-purposes '("^\\*grep\\*$" . sub-1))
 (add-to-list 'purpose-user-regexp-purposes '("^\\*Messages\\*$" . sub-1))
-(add-to-list 'purpose-user-regexp-purposes '("^figwheel_server.log$" . sub-2))
+(add-to-list 'purpose-user-regexp-purposes '("^figwheel_server.log$" . sub-1))
 (purpose-compile-user-configuration)
 
 (eshell)
 
 ;(require 'workgroups)
 ;(workgroups-mode 1)
-(purpose-load-window-layout "wg01" '("~/purpose-window"))
+(purpose-load-window-layout "wg01" '("~/window-purpose"))
 (neotree-show)
 (add-hook 'auto-save-hook
           (lambda ()
-            (purpose-save-window-layout "wg01" "~/purpose-window")))
+            (purpose-save-window-layout "wg01" "~/window-purpose")))
 
 (add-hook 'kill-emacs-hook
           (lambda ()
             (neotree-hide)
-            (purpose-save-window-layout "wg01" "~/purpose-window")))
+            (purpose-save-window-layout "wg01" "~/window-purpose")))
 
 ;(require 'switch-window)
 ; (select-window (third (switch-window--list)))

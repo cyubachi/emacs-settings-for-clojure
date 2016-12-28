@@ -1,16 +1,22 @@
 (require 'clojure-mode)
 (require 'cider)
-(require 'ac-cider)
+(require 'company)
+
+(setq company-idle-delay 0)
+(setq company-minimum-prefix-length 2)
+(setq company-selection-wrap-around t)
+;; (require 'ac-cider)
 
 ;;; Code:
 (add-hook 'clojure-mode-hook 'cider-mode)
-(add-hook 'cider-mode-hook 'ac-flyspell-workaround)
-(add-hook 'cider-mode-hook 'ac-cider-setup)
-(add-hook 'cider-repl-mode-hook 'ac-cider-setup)
-(eval-after-load "auto-complete"
-  '(progn
-     (add-to-list 'ac-modes 'cider-mode)
-     (add-to-list 'ac-modes 'cider-repl-mode)))
+(add-hook 'clojure-mode-hook 'company-mode)
+;;(add-hook 'cider-mode-hook 'ac-flyspell-workaround)
+;;(add-hook 'cider-mode-hook 'ac-cider-setup)
+(add-hook 'cider-repl-mode-hook 'company-mode)
+;;(eval-after-load "auto-complete"
+;;  '(progn
+;;     (add-to-list 'ac-modes 'cider-mode)
+;;     (add-to-list 'ac-modes 'cider-repl-mode)))
 
 ;; figwheel_server_logを表示する際に制御文字を表示しない
 (autoload 'ansi-color-for-comint-mode-on "ansi-color" nil t)

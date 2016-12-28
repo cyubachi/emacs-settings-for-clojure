@@ -15,7 +15,7 @@ This setting files use plugins as follows.
 * magit
 * clojure-mode
 * cider
-* ac-cider
+* company
 * rainbow-delimiters
 * anything
 * monokai-theme
