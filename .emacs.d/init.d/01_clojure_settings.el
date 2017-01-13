@@ -56,6 +56,7 @@
 
 ;; for cljs repl
 (custom-set-variables
+  '(cider-inject-dependencies-at-jack-in nil)
   '(cider-lein-parameters "repl :headless")) ;; this is default cider-lein-parameters
 (custom-set-faces)
 
