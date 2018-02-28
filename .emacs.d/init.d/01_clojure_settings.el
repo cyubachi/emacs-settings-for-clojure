@@ -9,10 +9,10 @@
 
 ;;; Code:
 (add-hook 'clojure-mode-hook 'cider-mode)
-(add-hook 'clojure-mode-hook 'company-mode)
+;;(add-hook 'clojure-mode-hook 'company-mode)
 ;;(add-hook 'cider-mode-hook 'ac-flyspell-workaround)
 ;;(add-hook 'cider-mode-hook 'ac-cider-setup)
-(add-hook 'cider-repl-mode-hook 'company-mode)
+;;(add-hook 'cider-repl-mode-hook 'company-mode)
 ;;(eval-after-load "auto-complete"
 ;;  '(progn
 ;;     (add-to-list 'ac-modes 'cider-mode)
@@ -27,6 +27,10 @@
 
 ;; dont make "nprepl-message*" buffer
 (setq nrepl-log-messages nil)
+
+(add-hook 'clojure-mode-hook (lambda ()
+                               (visual-line-mode -1)))
+
 
 ;; rainbow-delimiters
 (show-paren-mode t)
@@ -48,14 +52,15 @@
 
 
 ;; for flycheck-clojure
-(eval-after-load 'flycheck '(flycheck-clojure-setup))
-(add-hook 'after-init-hook #'global-flycheck-mode)
+;;(eval-after-load 'flycheck '(flycheck-clojure-setup))
+;;(add-hook 'after-init-hook #'global-flycheck-mode)
 
 (eval-after-load 'flycheck
   '(setq flycheck-display-errors-function #'flycheck-pos-tip-error-messages))
 
 ;; for cljs repl
 (custom-set-variables
+  '(cider-inject-dependencies-at-jack-in nil)
   '(cider-lein-parameters "repl :headless")) ;; this is default cider-lein-parameters
 (custom-set-faces)
 
