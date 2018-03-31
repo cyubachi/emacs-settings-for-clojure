@@ -19,6 +19,8 @@
     flycheck-clojure
     flycheck-pos-tip
     company
+    cheatsheet
+    open-junk-file
     ))
 
 (defvar my/favorite-package-urls
@@ -87,11 +89,14 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(cider-inject-dependencies-at-jack-in nil)
  '(cider-lein-parameters "repl :headless")
- '(magit-push-arguments nil))
+ '(magit-push-arguments nil)
+ '(show-paren-mode t)
+ '(tool-bar-mode nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(default ((t (:family "Ubuntu Mono" :foundry "DAMA" :slant normal :weight normal :height 173 :width normal)))))

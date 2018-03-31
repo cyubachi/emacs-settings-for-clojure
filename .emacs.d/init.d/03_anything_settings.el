@@ -38,12 +38,24 @@
     (candidates . (lambda () run-congiguration-candidates))
     (type . command)))
 
+(defun show-cheatsheet (cs)
+  (message "%s" cs)
+  (custom-cheatsheet-show))
+
+(setq cheatsheet-candidates '("show cheatsheet"))
+
+(defvar anything-c-source-cheatsheet
+  '((name . "Cheatsheet")
+    (candidates . (lambda () cheatsheet-candidates))
+    (action . show-cheatsheet)))
+
 (defun my-anything ()
   (interactive)
   (anything-other-buffer
    '(anything-c-source-buffers-list
      anything-c-source-run-configuration
      anything-c-source-switch-project
+     anything-c-source-cheatsheet
      anything-c-source-recentf
      anything-c-source-files-in-current-dir+)
    "*anything*"))

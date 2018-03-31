@@ -11,6 +11,8 @@
 (global-set-key
  [f12] 'eval-buffer)
 
+(add-to-list 'load-path "/home/chubachi/tty-format")
+
 ;; comment or uncomment region
 (global-set-key (kbd "C-c ;") 'comment-or-uncomment-region)
 
@@ -48,3 +50,7 @@
 (set-language-environment "Japanese")
 (set-default 'buffer-file-coding-system 'utf-8)
 
+;; open junk file
+(setq open-junk-file-format "~/junk/%Y/%m/%Y-%m-%d-%H%M%S.")
+(global-set-key (kbd "C-x n") 'open-junk-file)
+(setq open-junk-file-find-file-function 'find-file)
