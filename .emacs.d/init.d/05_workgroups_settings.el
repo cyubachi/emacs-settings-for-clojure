@@ -15,6 +15,7 @@
 (add-to-list 'purpose-user-mode-purposes '(html-mode .main))
 (add-to-list 'purpose-user-mode-purposes '(fundamental-mode .main))
 (add-to-list 'purpose-user-mode-purposes '(cheatsheet-mode .main))
+(add-to-list 'purpose-user-regexp-purposes '("^\\*Google Transrate\\*$" . main))
 (add-to-list 'purpose-user-regexp-purposes '("^\\*GNU Emacs\\*$" . main))
 (add-to-list 'purpose-user-regexp-purposes '("^\\*eshell\\*$" . sub-1))
 (add-to-list 'purpose-user-regexp-purposes '("*magit: .*?*""*magit-process: .*?*" . sub-1))

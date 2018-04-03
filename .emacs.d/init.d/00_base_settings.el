@@ -54,3 +54,17 @@
 (setq open-junk-file-format "~/junk/%Y/%m/%Y-%m-%d-%H%M%S.")
 (global-set-key (kbd "C-x n") 'open-junk-file)
 (setq open-junk-file-find-file-function 'find-file)
+
+
+;; Markdown indent
+(add-hook 'markdown-mode-hook
+          '(lambda ()
+             (electric-indent-local-mode -1)))
+
+
+;; eww settings
+(setq eww-search-prefix "https://www.google.co.jp/search?q=")
+(require 'mylisp-eww-color)
+;;; [2014-11-17 Mon]背景・文字色を無効化する
+(advice-add 'shr-colorize-region :around 'shr-colorize-region--disable)
+(advice-add 'eww-colorize-region :around 'shr-colorize-region--disable)
