@@ -24,7 +24,6 @@
 (add-to-list 'purpose-user-regexp-purposes '("^\\*cider-repl.*" . sub-2))
 (add-to-list 'purpose-user-regexp-purposes '("^\\*cider-debug.*" . main))
 (add-to-list 'purpose-user-regexp-purposes '("^\\*grep*" . sub-1))
-(add-to-list 'purpose-user-regexp-purposes '("^\\*magit-*diff.*" . main))
 (add-to-list 'purpose-user-regexp-purposes '("^\\*cheatsheet\\*$" . main))
 (add-to-list 'purpose-user-regexp-purposes '("^\\*cider-debug.*" . sub-1))
 (add-to-list 'purpose-user-regexp-purposes '("^\\*Async Shell Command.*$" . sub-1))
