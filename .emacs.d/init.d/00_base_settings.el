@@ -62,9 +62,52 @@
              (electric-indent-local-mode -1)))
 
 
-;; eww settings
-(setq eww-search-prefix "https://www.google.co.jp/search?q=")
-(require 'mylisp-eww-color)
-;;; [2014-11-17 Mon]背景・文字色を無効化する
-(advice-add 'shr-colorize-region :around 'shr-colorize-region--disable)
-(advice-add 'eww-colorize-region :around 'shr-colorize-region--disable)
+(add-to-list 'load-path
+             (expand-file-name "/usr/share/emacs/site-lisp/w3m"))
+
+;; emacs-w3m
+(require 'w3m-load)
+
+
+(setq w3m-coding-system 'utf-8
+      w3m-file-coding-system 'utf-8
+      w3m-file-name-coding-system 'utf-8
+      w3m-input-coding-system 'utf-8
+      w3m-output-coding-system 'utf-8
+      w3m-terminal-coding-system 'utf-8)
+
+(autoload 'w3m-browse-url "w3m" "Ask a WWW browser to show a URL." t)
+
+(setq w3m-default-display-inline-images t)
+
+(global-set-key (kbd "C-x w") 'w3m-browse-current-buffer)
+
+(defun other-window-or-split ()
+  (interactive)
+  (when (one-window-p)
+    (split-window-horizontally))
+  (other-window 1))
+
+(global-set-key (kbd "C-t") 'other-window-or-split)
+
+(neotree-show)
+
+(if (not window-system)
+    (progn
+      ;; CUI用設定を、ここに記述
+      (setq inhibit-startup-message t)
+      (setq split-width-threshold nil)))
+
+(setq eshell-command-aliases-list
+      (append
+       (list
+        (list "ll" "ls -ltr")
+        (list "la" "ls -a")
+        (list "o" "xdg-open")
+        (list "emacs" "find-file $1")
+        (list "m" "find-file $1")
+        (list "mc" "find-file $1")
+        (list "d" "dired ."))))
+(eshell)
+
+

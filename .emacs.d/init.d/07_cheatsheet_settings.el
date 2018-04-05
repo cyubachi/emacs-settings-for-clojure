@@ -62,12 +62,12 @@
                       '(:key "C-x C-l" :description "Convert region to lower case (downcase-region).")
                       '(:key "C-x C-u" :description "Convert region to upper case (upcase-region)."))
 
-(cheatsheet-add-group 'Selecting Text
+(cheatsheet-add-group 'Selecting\ Text
                       '(:key "C-x h" :description "runs the command mark-whole-buffer"))
 
 (cheatsheet-add-group 'Indent
                       '(:key "C-M-\\" :description "runs the command indent-region"))
-(cheatsheet-add-group 'Files and Buffers
+(cheatsheet-add-group 'Files\ and\ Buffers
                       '(:key "C-x C-b" :description "List buffers")
                       '(:key "C-x C-f" :description "Find file")
                       '(:key "C-x C-s" :description "Save file")
@@ -88,7 +88,7 @@
 
 ;; original
 ;; (define-key cheatsheet-mode-map (kbd "C-q") 'kill-buffer-and-window)
-(define-key cheatsheet-mode-map (kbd "C-q") 'kill-buffer)
+;; (define-key cheatsheet-mode-map (kbd "C-q") 'kill-buffer)
 
 (defun cheatsheet-quit-keybind ()
   (local-set-key "q" 'kill-this-buffer))

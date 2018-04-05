@@ -28,3 +28,5 @@
 
 (setq google-translate-pop-up-buffer-set-focus t)
 (global-set-key (kbd "C-c t") 'google-translate-enja-or-jaen)
+
+(setq eww-search-prefix "http://www.google.co.jp/search?q=")
