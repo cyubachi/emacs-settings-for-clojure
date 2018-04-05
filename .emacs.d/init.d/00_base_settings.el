@@ -92,11 +92,9 @@
 
 (neotree-show)
 
-(if (not window-system)
-    (progn
-      ;; CUI用設定を、ここに記述
-      (setq inhibit-startup-message t)
-      (setq split-width-threshold nil)))
+;; CUI用設定を、ここに記述
+(setq inhibit-startup-message t)
+(setq split-width-threshold nil)
 
 (setq eshell-command-aliases-list
       (append
