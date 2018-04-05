@@ -26,7 +26,13 @@
      (if asciip "ja" "en")
      string)))
 
-(setq google-translate-pop-up-buffer-set-focus t)
+;; (setq google-translate-pop-up-buffer-set-focus t)
 (global-set-key (kbd "C-c t") 'google-translate-enja-or-jaen)
 
 (setq eww-search-prefix "http://www.google.co.jp/search?q=")
+
+;; popwin.el
+(require 'popwin)
+(setq display-buffer-function 'popwin:display-buffer)
+(setq popwin:popup-window-position 'bottom)
+(push '("*Google Translate*") popwin:special-display-config)
