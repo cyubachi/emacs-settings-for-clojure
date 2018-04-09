@@ -22,7 +22,7 @@
   (async-shell-command (format "cd %s %s lein cljsbuild auto" ffip-project-root command-delimiter)))
 
 (defun exec-lein-figwheel ()
-  (interactive)
+  (message "test")
   (async-shell-command (format "cd %s %s lein do javac, figwheel" ffip-project-root command-delimiter))
   (switch-to-buffer (buffer-name (find-file-noselect (concat ffip-project-root "/figwheel_server.log"))))
   )
@@ -41,22 +41,22 @@
 ;(add-hook 'after-revert-hook 'do-end-of-buffer)
 ;(add-hook 'find-file-hook 'do-end-of-buffer)
 
-(require 'tty-format)
+;;(require 'tty-format)
 ;; M-x display-ansi-colors to explicitly decode ANSI color escape sequences
 
-(setq auto-revert-tail-mode nil)
+;; (setq auto-revert-tail-mode nil)
 
-(defun display-ansi-colors ()
-  (interactive)
-  (format-decode-buffer 'ansi-colors))
+;;(defun display-ansi-colors ()
+;;  (interactive)
+;;  (format-decode-buffer 'ansi-colors))
 
-(defun color-direction ()
-  (when auto-revert-tail-mode
-    (display-ansi-colors)))
+;; (defun color-direction ()
+;;   (when auto-revert-tail-mode
+;;     (display-ansi-colors)))
 ;; decode ANSI color escape sequences for *.txt or README files                                                                                                                                                    
-(add-hook 'find-file-hooks 'color-direction)
+;; (add-hook 'find-file-hooks 'color-direction)
 
 ;; decode ANSI color escape sequences for .log files
-(add-hook 'after-revert-hook 'display-ansi-colors)
+;; (add-hook 'after-revert-hook 'display-ansi-colors)
 
 ;; (add-to-list 'auto-mode-alist '("\\.log\\'" . display-ansi-colors))

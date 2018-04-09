@@ -50,6 +50,8 @@
 (set-language-environment "Japanese")
 (set-default 'buffer-file-coding-system 'utf-8)
 
+(set-fontset-font t 'japanese-jisx0208 "TakaoPGothic")
+
 ;; open junk file
 (setq open-junk-file-format "~/junk/%Y/%m/%Y-%m-%d-%H%M%S.")
 (global-set-key (kbd "C-x n") 'open-junk-file)
@@ -65,23 +67,6 @@
 (add-to-list 'load-path
              (expand-file-name "/usr/share/emacs/site-lisp/w3m"))
 
-;; emacs-w3m
-(require 'w3m-load)
-
-
-(setq w3m-coding-system 'utf-8
-      w3m-file-coding-system 'utf-8
-      w3m-file-name-coding-system 'utf-8
-      w3m-input-coding-system 'utf-8
-      w3m-output-coding-system 'utf-8
-      w3m-terminal-coding-system 'utf-8)
-
-(autoload 'w3m-browse-url "w3m" "Ask a WWW browser to show a URL." t)
-
-(setq w3m-default-display-inline-images t)
-
-(global-set-key (kbd "C-x w") 'w3m-browse-current-buffer)
-
 (defun other-window-or-split ()
   (interactive)
   (when (one-window-p)
@@ -90,7 +75,7 @@
 
 (global-set-key (kbd "C-t") 'other-window-or-split)
 
-(neotree-show)
+;; (neotree-show)
 
 ;; CUI用設定を、ここに記述
 (setq inhibit-startup-message t)
@@ -109,3 +94,11 @@
 (eshell)
 
 
+(defun mark-word-at-point ()
+  (interactive)
+  (let ((char (char-to-string (char-after (point)))))
+    (cond
+     ((string= " " char) (delete-horizontal-space))
+     ((string-match "[\t\n -@\[-`{-~]" char) (mark-word ))
+     (t (forward-char) (backward-word) (mark-word 1)))))
+(global-set-key "\M-@" 'mark-word-at-point)

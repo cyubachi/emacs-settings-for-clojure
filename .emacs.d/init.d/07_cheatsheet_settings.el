@@ -63,6 +63,7 @@
                       '(:key "C-x C-u" :description "Convert region to upper case (upcase-region)."))
 
 (cheatsheet-add-group 'Selecting\ Text
+                      '(:key "M-@" :description "word select")
                       '(:key "C-x h" :description "runs the command mark-whole-buffer"))
 
 (cheatsheet-add-group 'Indent

@@ -6,7 +6,7 @@
     cider
     ac-cider
     rainbow-delimiters
-    anything
+    helm
     monokai-theme
     exec-path-from-shell
     tabbar
@@ -93,5 +93,14 @@
  '(cider-inject-dependencies-at-jack-in nil)
  '(cider-lein-parameters "repl :headless")
  '(magit-push-arguments nil)
+ '(package-selected-packages
+   (quote
+    (direx helm workgroups window-purpose twittering-mode tabbar switch-window slack rainbow-delimiters popwin paredit open-junk-file neotree monokai-theme magit init-loader google-translate google-this flycheck-pos-tip flycheck-clojure find-file-in-project f exec-path-from-shell company cl-generic cheatsheet anything ac-cider)))
  '(show-paren-mode t)
  '(tool-bar-mode nil))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
