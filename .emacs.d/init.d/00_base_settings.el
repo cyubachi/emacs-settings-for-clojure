@@ -75,8 +75,6 @@
 
 (global-set-key (kbd "C-t") 'other-window-or-split)
 
-;; (neotree-show)
-
 ;; CUI用設定を、ここに記述
 (setq inhibit-startup-message t)
 (setq split-width-threshold nil)
