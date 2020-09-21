@@ -55,7 +55,7 @@
 
 (when (require 'package nil t)
   (add-to-list 'package-archives
-               '("melpa" . "http://melpa.milkbox.net/packages/") t)
+               '("melpa" . "https://melpa.org/packages/") t)
   (package-initialize)
   (let ((pkgs (loop for pkg in my/favorite-packages
                     unless (package-installed-p pkg)
@@ -94,8 +94,7 @@
  '(cider-lein-parameters "repl :headless")
  '(magit-push-arguments nil)
  '(package-selected-packages
-   (quote
-    (direx helm workgroups window-purpose twittering-mode tabbar switch-window slack rainbow-delimiters popwin paredit open-junk-file neotree monokai-theme magit init-loader google-translate google-this flycheck-pos-tip flycheck-clojure find-file-in-project f exec-path-from-shell company cl-generic cheatsheet anything ac-cider)))
+   '(direx helm workgroups window-purpose twittering-mode tabbar switch-window slack rainbow-delimiters popwin paredit open-junk-file neotree monokai-theme magit init-loader google-translate google-this flycheck-pos-tip flycheck-clojure find-file-in-project f exec-path-from-shell company cl-generic cheatsheet anything ac-cider))
  '(show-paren-mode t)
  '(tool-bar-mode nil))
 (custom-set-faces
